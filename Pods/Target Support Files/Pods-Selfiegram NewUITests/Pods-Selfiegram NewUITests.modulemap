@@ -1,0 +1,6 @@
+framework module Pods_Selfiegram_NewUITests {
+  umbrella header "Pods-Selfiegram NewUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
