@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wOz-QR-vMG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="wOz-QR-vMG">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -40,6 +40,20 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p9H-He-ATC" userLabel="likedButton">
+                                            <rect key="frame" x="474" y="248" width="96" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="YoR-Aa-XBq"/>
+                                                <constraint firstAttribute="width" constant="23" id="vM6-h1-xeo"/>
+                                            </constraints>
+                                            <state key="normal" image="hearts-off">
+                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <state key="selected" title="hearts-on"/>
+                                            <connections>
+                                                <action selector="likeButtonClicked:" destination="q93-SH-Eli" eventType="touchUpInside" id="iuw-p4-7qp"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="qVb-Cp-xHl" firstAttribute="leading" secondItem="2ft-df-Yc2" secondAttribute="leadingMargin" id="1Nb-KJ-dEz"/>
@@ -48,11 +62,14 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="MfB-02-1PY" secondAttribute="trailing" id="SpD-VK-Fgh"/>
                                         <constraint firstItem="MfB-02-1PY" firstAttribute="leading" secondItem="2ft-df-Yc2" secondAttribute="leadingMargin" id="aKf-go-wAs"/>
                                         <constraint firstItem="qVb-Cp-xHl" firstAttribute="top" secondItem="MfB-02-1PY" secondAttribute="bottom" constant="8" id="iXW-op-ryA"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="p9H-He-ATC" secondAttribute="trailing" constant="22" id="obH-CR-XtC"/>
+                                        <constraint firstItem="p9H-He-ATC" firstAttribute="top" secondItem="MfB-02-1PY" secondAttribute="bottom" constant="8" id="pSV-N1-hLp"/>
                                         <constraint firstItem="MfB-02-1PY" firstAttribute="top" secondItem="2ft-df-Yc2" secondAttribute="topMargin" id="zxc-3d-MJD"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="commentLabel" destination="bAI-Vh-OCM" id="00y-Sa-UfB"/>
+                                    <outlet property="likeButtonClicked" destination="p9H-He-ATC" id="K4H-bz-WD2"/>
                                     <outlet property="selfieImageView" destination="MfB-02-1PY" id="iJx-rc-2rg"/>
                                     <outlet property="usernameLabel" destination="qVb-Cp-xHl" id="VMc-6I-5fi"/>
                                 </connections>
@@ -253,6 +270,7 @@
         <image name="Activities" width="25" height="25"/>
         <image name="NewsFeed" width="25" height="25"/>
         <image name="Profile" width="25" height="25"/>
+        <image name="hearts-off" width="42" height="37"/>
         <image name="placeholder" width="256" height="256"/>
     </resources>
 </document>
