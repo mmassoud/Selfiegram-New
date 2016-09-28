@@ -11,6 +11,40 @@ import Parse
 
 
 class SelfieCell: UITableViewCell {
+    
+   
+    
+
+        
+        
+        
+    func tapAnimation() {
+        
+        // set heartAnimationView to be very tiny and not hidden
+        self.heartAnimationView.transform = CGAffineTransformMakeScale(0, 0)
+        self.heartAnimationView.hidden = false
+        
+        //animation for 1 second, no delay
+        UIView.animateWithDuration(1.0, delay: 0, options: [], animations: { () -> Void in
+            
+            // during our animation change heartAnimationView to be 3X what it is on storyboard
+            self.heartAnimationView.transform = CGAffineTransformMakeScale(3, 3)
+            
+        }) { (success) -> Void in
+            
+            // when animation is complete set heartAnimationView to be hidden
+            self.heartAnimationView.hidden = true
+        }
+        
+        likeButtonClicked(likeButton)
+        
+    }
+        
+    
+    
+    
+    
+    
    
     var post:Post? {
         didSet{
@@ -30,7 +64,7 @@ class SelfieCell: UITableViewCell {
                 commentLabel.text = post.comment
                 
                
-                likeButtonClicked.selected = false
+                likeButton.selected = false
                 
                                 let query = post.likes.query()
                 query.findObjectsInBackgroundWithBlock({ (users, error) -> Void in
@@ -41,7 +75,7 @@ class SelfieCell: UITableViewCell {
                             // of likes we set the likeButton to selected
                             // objectId is a great way to compare if two objects are equal
                             if user.objectId == PFUser.currentUser()?.objectId {
-                                self.likeButtonClicked.selected = true
+                                self.likeButton.selected = true
                             }
                         }
                     }
@@ -58,6 +92,16 @@ class SelfieCell: UITableViewCell {
         super.awakeFromNib()
         
     }
+    
+    
+    
+    @IBOutlet weak var heartAnimationView: UIImageView!
+    
+    
+    
+    
+    
+    @IBOutlet weak var likeButton: UIButton!
     
     @IBOutlet weak var likeButtonClicked: UIButton!
     

@@ -2,6 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:ActivityViewController.swift">
+   </FileRef>
+   <FileRef
+      location = "group:ActivityCell.swift">
+   </FileRef>
+   <FileRef
       location = "group:Selfiegram New.xcodeproj">
    </FileRef>
    <FileRef

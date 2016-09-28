@@ -13,6 +13,66 @@ import Photos
 class FeedViewController: UITableViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     
+    
+    
+    
+    
+    func getPosts() {
+        if let query = Post.query() {
+            query.orderByDescending("createdAt")
+            query.includeKey("user")
+            query.findObjectsInBackgroundWithBlock({ (posts, error) -> Void in
+                
+                if let posts = posts as? [Post]{
+                    self.posts = posts
+                    self.tableView.reloadData()
+                    // remove the spinning circle if needed
+                    self.refreshControl?.endRefreshing()
+                }
+                
+            })
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        getPosts()
+        
+    }
+    
+    @IBAction func refreshPulled(sender: UIRefreshControl) {
+        getPosts()
+    }
+
+    
+    @IBAction func doubleTappedSelfie(sender: UITapGestureRecognizer) {
+        
+        
+        
+
+        // get the location (x,y) position on our tableView where we have clicked
+        let tapLocation = sender.locationInView(tableView)
+        
+        // based on the x, y position we can get the indexPath for where we are at
+        if let indexPathAtTapLocation = tableView.indexPathForRowAtPoint(tapLocation){
+            
+            // based on the indexPath we can get the specific cell that is being tapped
+            let cell = tableView.cellForRowAtIndexPath(indexPathAtTapLocation) as! SelfieCell
+            
+            //run a method on that cell.
+            cell.tapAnimation()
+        }
+    }
+
+        
+        
+        
+    
+    
+    
+    
+    
+  
 
     
     @IBAction func cameraButtonPressed(sender: AnyObject) { // 1: Create an ImagePickerController
@@ -162,24 +222,24 @@ class FeedViewController: UITableViewController, UIImagePickerControllerDelegate
         
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        if let query = Post.query() {
-           query.orderByDescending("createdAt")
-            query.includeKey("user")
-            query.findObjectsInBackgroundWithBlock({ (posts, error) -> Void in
-                
-                if let posts = posts as? [Post]{
-                    self.posts = posts
-                    self.tableView.reloadData()
-                }
-               
-            })
-            
-        }
-    }
-    
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        
+//        if let query = Post.query() {
+//           query.orderByDescending("createdAt")
+//            query.includeKey("user")
+//            query.findObjectsInBackgroundWithBlock({ (posts, error) -> Void in
+//                
+//                if let posts = posts as? [Post]{
+//                    self.posts = posts
+//                    self.tableView.reloadData()
+//                }
+//               
+//            })
+//            
+//        }
+//    }
+//    
 
     override func didReceiveMemoryWarning()
     {
